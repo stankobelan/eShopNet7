@@ -19,7 +19,7 @@ namespace PublicApiIntegrationTests.CatalogItemEndpoints
             var stringResponse = await response.Content.ReadAsStringAsync();
             var model = stringResponse.FromJson<CatalogIndexViewModel>();
 
-            Assert.AreEqual(10, model.CatalogItems.Count());
+            Assert.AreEqual(10, model.CatalogItems!.Count());
         }
 
         [TestMethod]

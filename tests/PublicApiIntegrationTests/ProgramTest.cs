@@ -7,13 +7,13 @@ namespace PublicApiIntegrationTests
     [TestClass]
     public class ProgramTest
     {
-        private static WebApplicationFactory<Program> _application;
+        private static WebApplicationFactory<Program>? _application;
 
         public static HttpClient NewClient
         {
             get
             {
-                return _application.CreateClient();
+                return _application!.CreateClient();
             }
         }
 

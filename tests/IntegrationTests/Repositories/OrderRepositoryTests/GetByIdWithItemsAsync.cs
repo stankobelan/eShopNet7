@@ -49,14 +49,14 @@ public class GetByIdWithItemsAsync
 
         //Act
         var spec = new OrderWithItemsByIdSpec(secondOrderId);
-        var orderFromRepo = await _orderRepository.GetBySpecAsync(spec);
+        var orderFromRepo = await _orderRepository.FirstOrDefaultAsync(spec);
 
         //Assert
         Assert.Equal(secondOrderId, orderFromRepo.Id);
         Assert.Equal(secondOrder.OrderItems.Count, orderFromRepo.OrderItems.Count);
         Assert.Equal(1, orderFromRepo.OrderItems.Count(x => x.UnitPrice == itemOneUnitPrice));
         Assert.Equal(1, orderFromRepo.OrderItems.Count(x => x.UnitPrice == itemTwoUnitPrice));
-        Assert.Equal(itemOneUnits, orderFromRepo.OrderItems.SingleOrDefault(x => x.UnitPrice == itemOneUnitPrice).Units);
-        Assert.Equal(itemTwoUnits, orderFromRepo.OrderItems.SingleOrDefault(x => x.UnitPrice == itemTwoUnitPrice).Units);
+        Assert.Equal(itemOneUnits, orderFromRepo.OrderItems.SingleOrDefault(x => x.UnitPrice == itemOneUnitPrice)!.Units);
+        Assert.Equal(itemTwoUnits, orderFromRepo.OrderItems.SingleOrDefault(x => x.UnitPrice == itemTwoUnitPrice)!.Units);
     }
 }
